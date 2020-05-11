@@ -142,7 +142,7 @@ class GcodeLexer(QsciLexerCustom):
             # print line
             length = len(line)
             graymode = False
-            msg = ('msg' in bytes(line.lower()) or 'debug' in bytes(line.lower()))
+            msg = ('msg' in line.lower() or 'debug' in line.lower())
             for char in str(line):
                 # print char
                 if char == '(':
