@@ -142,7 +142,7 @@ class GcodeLexer(QsciLexerCustom):
             # print line
             length = len(line)
             graymode = False
-            msg = ('msg' in line.lower() or 'debug' in line.lower())
+            msg = (b'msg' in line.lower() or b'debug' in line.lower())
             for char in str(line):
                 # print char
                 if char == '(':
@@ -156,7 +156,8 @@ class GcodeLexer(QsciLexerCustom):
                 elif graymode:
                     if msg and char.lower() in ('m', 's', 'g', ',', 'd', 'e', 'b', 'u'):
                         set_style(1, self.Assignment)
-                        if char == ',': msg = False
+                        if char == ',':
+                            msg = False
                     else:
                         set_style(1, self.Comment)
                     continue
